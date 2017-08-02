@@ -8,11 +8,10 @@ import About from '../about'
 
 const App = props => (
   <div>
-    <div>isLogin:{props.authentication.isLoggedIn?'True':'False'}</div>
     <Navbar inverse collapseOnSelect fluid>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="#">React</a>
+          <a>React</a>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
@@ -34,7 +33,7 @@ const App = props => (
       </Nav> */}
       </Navbar.Collapse>
     </Navbar>
-
+     <div>isLogin:{props.authentication.isLoggedIn?'True':'False'}</div> 
     <main>
       <Route exact path="/" component={Login} />
       <Route exact path="/home" component={Home} />
@@ -44,7 +43,8 @@ const App = props => (
 )
 
 const mapStateToProps = state => ({
-  authentication:state.authentication
+  authentication:state.authentication,
+  router:state.router
   // count: state.counter.count,
   // isIncrementing: state.counter.isIncrementing,
   // isDecrementing: state.counter.isDecrementing
@@ -56,4 +56,4 @@ export default connect(
   null
 )(App)
 
-//export default App
+// export default App
