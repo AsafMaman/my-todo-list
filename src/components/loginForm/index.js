@@ -1,44 +1,54 @@
 import React from 'react'
 import {Field,reduxForm} from "redux-form"
-// import {FormGroup,FormControl,ControlLabel,HelpBlock} from 'react-bootstrap'
+
+import "./loginForm.css"
+
+const validate = values => {
+  const errors = {}
+  if (!values.user) {
+    errors.user = 'Required'
+  }
+
+  if (!values.password) {
+    errors.password = 'Required'
+  }
+  return errors
+}
 
 let LoginForm=props => {
-    const {handleSubmit} =props
+    const {handleSubmit,invalid} =props
     return(
-        // <form onSubmit={handleSubmit}>
-      //   <form>
-      //   <FormGroup controlId="formBasicText">
-      //     <ControlLabel>User Id</ControlLabel>
-      //     <Field name="userId" component="input" type="text" />
-      //     {/* <FormControl
-      //       type="text"
-      //       placeholder="Enter text"
-      //       onChange={this.handleChange}
-      //     /> */}
-      //     {/* <FormControl.Feedback />
-      //     <HelpBlock>Validation is based on string length.</HelpBlock> */}
-      //   </FormGroup>
-      // </form>
-      <form onSubmit={ handleSubmit }>
-      <div>
-        <label htmlFor="firstName">First Name</label>
-        <Field name="firstName" component="input" type="text" placeholder="User"/>
-      </div>
-      <div>
-        <label htmlFor="lastName">Last Name</label>
-        <Field name="lastName" component="input" type="text" />
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <Field name="email" component="input" type="email" />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+      <div className="row">
+        <div className="col-md-12">invalid:{invalid?'true':'false'}</div>
+        <div className="col-lg-4 col-lg-offset-4 col-md-8 col-xs-12">
+          <form onSubmit={ handleSubmit } className="form-horizontal">
+            <div className="form-group">
+              <label htmlFor="user" className="col-sm-3 control-label">User</label>
+              <div className="col-sm-9">
+                <Field name="user" className="form-control" component="input" type="text" placeholder="User"/>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password" className="col-sm-3 control-label">Password</label>
+              <div className="col-sm-9">
+                <Field name="password" className="form-control" component="input" type="password" />
+              </div>
+            </div>
+            <div className="form-group">
+              <div className="col-lg-2 col-lg-offset-6">
+                <button type="submit" className="btn btn-success" disabled={invalid}>Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
     )
 }
 
 LoginForm=reduxForm({
-    form:'login'
+    form:'login',
+    validate
 })(LoginForm)
 
 export default LoginForm;
