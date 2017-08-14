@@ -1,8 +1,8 @@
 import {fork} from "redux-saga/effects"
-import watchAuthenticateUser from "./authenticationSaga"
+import watchLoginRequest from "./authenticationSaga"
 function* rootSaga(){
     yield[
-        fork(watchAuthenticateUser)
+        fork(watchLoginRequest)
     ]
     
 }

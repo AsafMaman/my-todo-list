@@ -1,20 +1,19 @@
 import React,{Component} from 'react'
 import {connect} from 'react-redux'
 import LoginForm from '../../components/loginForm'
-import {authenticateUser} from '../../modules/authentication'
+import {actions} from '../../modules/authentication'
 
 class Login extends Component{
   // componentDidMount(){
   //   // Injected by react-redux:
   //   let { dispatch } = this.props
   // }
+
   submit =(values)=>{
      let { dispatch } = this.props
-      console.log(values)
-      dispatch({type: 'AUTHENTICATE_USER',payload:{user:'user',password:'password'}})
-      var temp=authenticateUser(values.user,values.password)
-      temp(dispatch)
+      dispatch(actions.login(values.user,values.password))
   }
+
   render(){
     return(
       <div>
@@ -27,9 +26,6 @@ class Login extends Component{
 const mapStateToProps = state => ({
   authentication:state.authentication,
   router:state.router
-  // count: state.counter.count,
-  // isIncrementing: state.counter.isIncrementing,
-  // isDecrementing: state.counter.isDecrementing
 })
 
 
@@ -37,5 +33,3 @@ export default connect(
   mapStateToProps,
   null
 )(Login)
-
-//export default Login;

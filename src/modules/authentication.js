@@ -1,4 +1,10 @@
-export const INCREMENT = 'authentication/AUTHENTICATE_USER'
+export const types={
+  LOGIN_REQUEST: 'AUTH/LOGIN_REQUEST',
+  LOGIN_SUCCESS: 'AUTH/LOGIN_SUCCESS',
+  LOGIN_FAILURE: 'AUTH/LOGIN_FAILURE',
+  // AUTHENTICATE_USER:'authentication/AUTHENTICATE_USER',
+  // AUTHENTICATTION_SUCCEEDED:'authentication/AUTHENTICATTION_SUCCEEDED'
+}
 
 const initialState = {
   isLoggedIn:false
@@ -6,21 +12,25 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'USER_AUTHENTICATTION_SUCCEEDED':
+    case types.LOGIN_SUCCESS:
+    {
       return {
         ...state,
-        isLoggedIn: true
+        isLoggedIn:true
       }
+    }
+    case types.LOGIN_FAILURE:
+    {
+      return {
+        ...state,
+        isLoggedIn:false
+      }
+    }
     default:
       return state
   }
 }
 
-export const authenticateUser = (user,password) => {
-  return dispatch => {
-    dispatch({
-      type: 'AUTHENTICATE_USER',
-      payload:{user:user,password:password}
-    })
-  }
+export const actions={
+  login:(user,password)=>({type:types.LOGIN_REQUEST,payload:{user:user,password:password}})
 }

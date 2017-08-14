@@ -8,9 +8,9 @@ class authenticationService {
         return new Promise((resolve)=>{
             setTimeout(()=>{
                 resolve({
-                    authenticate:true
+                    authenticate:user===password
                 })
-            },3000)
+            },1000)
         })
     }
 }

@@ -45,9 +45,6 @@ const App = props => (
 const mapStateToProps = state => ({
   authentication:state.authentication,
   router:state.router
-  // count: state.counter.count,
-  // isIncrementing: state.counter.isIncrementing,
-  // isDecrementing: state.counter.isDecrementing
 })
 
 
@@ -55,5 +52,3 @@ export default connect(
   mapStateToProps,
   null
 )(App)
-
-// export default App
